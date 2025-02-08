@@ -3,26 +3,25 @@ package com.example.conecalculator
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.conecalculator.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val btnInput = findViewById<Button>(R.id.btnInput)
-        val btnWork = findViewById<Button>(R.id.btnWork)
-        val btnExit = findViewById<Button>(R.id.btnExit)
-
-        btnInput.setOnClickListener {
+        binding.btnInput.setOnClickListener {
             val intent = Intent(this, InputActivity::class.java)
             startActivity(intent)
         }
 
-        btnWork.setOnClickListener {
+        binding.btnWork.setOnClickListener {
             val prefs: SharedPreferences = getSharedPreferences("ConeData", MODE_PRIVATE)
             val radius = prefs.getFloat("radius", 0f)
             val height = prefs.getFloat("height", 0f)
@@ -49,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                 .show()
         }
 
-        btnExit.setOnClickListener {
+        binding.btnExit.setOnClickListener {
             finishAffinity()
         }
     }

@@ -5,6 +5,11 @@ plugins {
 }
 
 android {
+
+    viewBinding {
+        enable = true
+    }
+
     namespace = "com.example.conecalculator"
     compileSdk = 35
 
